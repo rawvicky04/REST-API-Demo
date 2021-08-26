@@ -1,0 +1,54 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.beans.Country;
+import com.example.demo.services.CountryServices;
+
+@RestController
+public class CountryController {
+	
+	@Autowired
+	CountryServices countryServices;
+	
+	@GetMapping("/getcountries")
+	public List<Country> getAllCountry() {
+		return countryServices.getAllCountry();
+	}
+	
+	@GetMapping("/getcountries/{id}")
+	public Country getCountryByID(@PathVariable(value = "id") int id) {
+		return countryServices.getCountryByID(id);
+	}
+	
+	@GetMapping("/getcountries/countryname")
+	public Country getCountryByName(@RequestParam(value = "name") String name) {
+		return countryServices.getCountryByName(name);
+	}
+	
+	@PostMapping("/addcountry")
+	public Country addCountry(@RequestBody Country country) {
+		return countryServices.addCountry(country);
+	}
+	
+	@PutMapping("/updatecountry")
+	public Country updateCountry(@RequestBody Country country) {
+		return countryServices.updateCountry(country);
+	}
+	
+	@DeleteMapping("/deletecountry/{id}")
+	public String deleteCountry(@PathVariable(value="id") int id) {
+		return countryServices.deleteCountry(id);
+	}
+
+}
