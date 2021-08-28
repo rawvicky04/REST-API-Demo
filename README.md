@@ -22,6 +22,7 @@ Example:
     "name": "Japan",
     "capital": "Tokyo"
 }
+You need not to add id here. It will be auto generated here.
 
-You can verify all this on postman.
+You can verify all of this on postman.
 Thanks.
